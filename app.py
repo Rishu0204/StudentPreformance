@@ -13,7 +13,20 @@ with gzip.open('model.pkl', 'rb') as f:
 app=Flask(__name__)
 
 # Initialize Groq AI client
-client = Groq(api_key=GROQ_API_KEY)
+try:
+    if GROQ_API_KEY == "your_groq_api_key_here" or not GROQ_API_KEY:
+        print("⚠️  WARNING: Groq API key not configured!")
+        print("   Please set your API key in one of these ways:")
+        print("   1. Edit config.py and replace 'your_groq_api_key_here' with your actual key")
+        print("   2. Set environment variable: export GROQ_API_KEY='your_key_here'")
+        print("   3. Get a free key from: https://console.groq.com/")
+        client = None
+    else:
+        client = Groq(api_key=GROQ_API_KEY)
+        print("✅ Groq AI client initialized successfully")
+except Exception as e:
+    print(f"❌ Error initializing Groq client: {e}")
+    client = None
 
 # System prompt for EduImpactBot
 system_prompt = """
@@ -69,6 +82,10 @@ def chat():
         
         print(f"Received message: {user_message}")  # Debug log
         
+        # Check if Groq client is available
+        if client is None:
+            return jsonify({'error': 'AI service is not configured. Please contact administrator to set up the API key.'}), 503
+        
         # Use Groq AI with retry mechanism
         max_retries = 3
         
@@ -93,7 +110,7 @@ def chat():
             except Exception as groq_error:
                 print(f"Groq AI chat attempt {attempt + 1} error: {str(groq_error)}")
                 if attempt == max_retries - 1:  # Last attempt failed
-                    return jsonify({'error': 'AI service is currently unavailable. Please try again later.'}), 503
+                    return jsonify({'error': f'AI service is currently unavailable: {str(groq_error)}. Please try again later.'}), 503
         
     except Exception as e:
         print(f"Chat error: {str(e)}")
@@ -286,35 +303,55 @@ def predict():
         Format your response in a warm, encouraging tone as if speaking directly to the student and their family. Use clear headings and bullet points for easy reading. Keep the response comprehensive but focused (4-5 paragraphs maximum).
         """
 
-        # Try to get AI response with multiple attempts
-        ai_result = None
-        max_retries = 3
-        
-        for attempt in range(max_retries):
-            try:
-                print(f"Attempting AI analysis (attempt {attempt + 1}/{max_retries})")
-                
-                ai_response = client.chat.completions.create(
-                    model="llama3.1-8b-instant",
-                    messages=[
-                        {"role": "system", "content": "You are an educational consultant specializing in student performance analysis. Provide personalized, actionable advice based on environmental factors."},
-                        {"role": "user", "content": ai_prompt}
-                    ],
-                    max_tokens=600,
-                    temperature=0.7
-                )
-                
-                ai_result = ai_response.choices[0].message.content
-                print("AI analysis successful!")
-                break
-                
-            except Exception as groq_error:
-                print(f"Groq AI attempt {attempt + 1} error: {str(groq_error)}")
-                if attempt == max_retries - 1:  # Last attempt failed
-                    ai_result = f"""I apologize, but our AI analysis service is currently experiencing technical difficulties. 
+        # Check if Groq client is available
+        if client is None:
+            ai_result = f"""⚠️ **AI Analysis Service Not Available**
 
-Your prediction results show: **{basic_result}**
-Predicted Scores: {[round(score, 1) for score in scores]}
+**Configuration Issue**: The AI analysis service requires a valid Groq API key to function.
+
+**Your Prediction Results:**
+- Performance Category: **{basic_result}**  
+- Predicted Scores: {[round(score, 1) for score in scores]}
+
+**Next Steps:**
+1. Administrator needs to configure the Groq API key
+2. Get a free API key from: https://console.groq.com/
+3. Set the key in config.py or as environment variable
+
+Your academic performance prediction has been completed successfully. Once the API key is configured, you'll receive detailed AI-powered insights about environmental factors affecting performance."""
+        else:
+            # Try to get AI response with multiple attempts
+            ai_result = None
+            max_retries = 3
+            
+            for attempt in range(max_retries):
+                try:
+                    print(f"Attempting AI analysis (attempt {attempt + 1}/{max_retries})")
+                    
+                    ai_response = client.chat.completions.create(
+                        model="llama3.1-8b-instant",
+                        messages=[
+                            {"role": "system", "content": "You are an educational consultant specializing in student performance analysis. Provide personalized, actionable advice based on environmental factors."},
+                            {"role": "user", "content": ai_prompt}
+                        ],
+                        max_tokens=600,
+                        temperature=0.7
+                    )
+                    
+                    ai_result = ai_response.choices[0].message.content
+                    print("AI analysis successful!")
+                    break
+                    
+                except Exception as groq_error:
+                    print(f"Groq AI attempt {attempt + 1} error: {str(groq_error)}")
+                    if attempt == max_retries - 1:  # Last attempt failed
+                        ai_result = f"""I apologize, but our AI analysis service is currently experiencing technical difficulties. 
+
+**Error Details**: {str(groq_error)}
+
+**Your Prediction Results:**
+- Performance Category: **{basic_result}**
+- Predicted Scores: {[round(score, 1) for score in scores]}
 
 While I cannot provide the detailed AI analysis at this moment, your academic performance prediction has been completed successfully. Please try again later for the personalized AI insights, or contact support if the issue persists."""
 
