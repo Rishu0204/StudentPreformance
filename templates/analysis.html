@@ -275,7 +275,7 @@
                 <div id="aiAnalysis" class="ai-analysis">
                     {% if ai_analysis %}
                         <h3>🤖 AI-Powered Analysis</h3>
-                        <div class="ai-content" id="aiContent">{{ ai_analysis }}</div>
+                        <div class="ai-content" id="aiContent">{{ ai_analysis|safe }}</div>
                     {% endif %}
                 </div>
                 <p id="resultDescription" class="result-description"></p>
@@ -302,10 +302,18 @@
             const aiContent = document.getElementById('aiContent');
             if (aiContent) {
                 let formattedContent = aiContent.innerHTML
+                    // Convert markdown headings to HTML
+                    .replace(/^### (.*$)/gm, '<h4>$1</h4>')
+                    .replace(/^## (.*$)/gm, '<h3>$1</h3>')
+                    .replace(/^# (.*$)/gm, '<h2>$1</h2>')
+                    // Convert bold and italic
                     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                     .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    // Convert line breaks
                     .replace(/\n/g, '<br>')
+                    // Convert lists
                     .replace(/^\s*[-*]\s+/gm, '• ')
+                    // Convert double line breaks to proper spacing
                     .replace(/\n\n/g, '<br><br>');
                 aiContent.innerHTML = formattedContent;
             }
@@ -360,10 +368,18 @@
                     const aiContent = document.getElementById('aiContent');
                     if (aiContent) {
                         let formattedContent = aiContent.innerHTML
+                            // Convert markdown headings to HTML
+                            .replace(/^### (.*$)/gm, '<h4>$1</h4>')
+                            .replace(/^## (.*$)/gm, '<h3>$1</h3>')
+                            .replace(/^# (.*$)/gm, '<h2>$1</h2>')
+                            // Convert bold and italic
                             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                             .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                            // Convert line breaks
                             .replace(/\n/g, '<br>')
+                            // Convert lists
                             .replace(/^\s*[-*]\s+/gm, '• ')
+                            // Convert double line breaks to proper spacing
                             .replace(/\n\n/g, '<br><br>');
                         aiContent.innerHTML = formattedContent;
                     }
@@ -507,10 +523,18 @@
                     } else {
                         // Convert markdown to HTML for better formatting
                         let formattedResponse = data.response
+                            // Convert markdown headings to HTML
+                            .replace(/^### (.*$)/gm, '<h4>$1</h4>')
+                            .replace(/^## (.*$)/gm, '<h3>$1</h3>')
+                            .replace(/^# (.*$)/gm, '<h2>$1</h2>')
+                            // Convert bold and italic
                             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                             .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                            // Convert line breaks
                             .replace(/\n/g, '<br>')
+                            // Convert lists
                             .replace(/^\s*[-*]\s+/gm, '• ')
+                            // Convert double line breaks to proper spacing
                             .replace(/\n\n/g, '<br><br>');
                         aiMessage.innerHTML = formattedResponse;
                     }
