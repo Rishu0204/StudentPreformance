@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPredict AI - Data Archive</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styleArchive.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">EduPredict AI</a>
+            <div class="nav-links">
+                <a href="{{ url_for('getanalysis') }}" class="nav-link">Get Analysis</a>
+                <a href="{{ url_for('archive') }}" class="nav-link active">Archive</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="header-section">
+            <h1 class="main-title">Data Archive</h1>
+            <p class="main-subtitle">Browse through our comprehensive dataset of student performance records and environmental factors</p>
+        </div>
+
+        <div class="archive-container">
+            <div class="archive-card">
+                <!-- Column Descriptions Section -->
+                <div class="descriptions-section">
+                    <div class="descriptions-container">
+                        <div class="description-slide active" data-slide="1">
+                            <h3>Demographic & Personal Info</h3>
+                            <div class="description-table">
+                                <div class="desc-row">
+                                    <span class="desc-column">school</span>
+                                    <span class="desc-meaning">Student's school</span>
+                                    <span class="desc-example">GP = Gabriel Pereira, MS = Mousinho da Silveira</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">sex</span>
+                                    <span class="desc-meaning">Gender of student</span>
+                                    <span class="desc-example">F = Female, M = Male</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">age</span>
+                                    <span class="desc-meaning">Age of the student</span>
+                                    <span class="desc-example">15–22</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">address</span>
+                                    <span class="desc-meaning">Home address type</span>
+                                    <span class="desc-example">U = Urban, R = Rural</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">famsize</span>
+                                    <span class="desc-meaning">Family size</span>
+                                    <span class="desc-example">LE3 = ≤3 members, GT3 = >3 members</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">Pstatus</span>
+                                    <span class="desc-meaning">Parent's cohabitation status</span>
+                                    <span class="desc-example">T = Living together, A = Apart</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="description-slide" data-slide="2">
+                            <h3>Parental Info</h3>
+                            <div class="description-table">
+                                <div class="desc-row">
+                                    <span class="desc-column">Medu</span>
+                                    <span class="desc-meaning">Mother's education</span>
+                                    <span class="desc-example">0 = None, 4 = Higher education</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">Fedu</span>
+                                    <span class="desc-meaning">Father's education</span>
+                                    <span class="desc-example">0 = None, 4 = Higher education</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">Mjob</span>
+                                    <span class="desc-meaning">Mother's job</span>
+                                    <span class="desc-example">teacher, health, services, at_home, other</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">Fjob</span>
+                                    <span class="desc-meaning">Father's job</span>
+                                    <span class="desc-example">teacher, health, services, at_home, other</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">reason</span>
+                                    <span class="desc-meaning">Reason to choose this school</span>
+                                    <span class="desc-example">home, reputation, course, other</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">guardian</span>
+                                    <span class="desc-meaning">Student's guardian</span>
+                                    <span class="desc-example">mother, father, other</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="description-slide" data-slide="3">
+                            <h3>Academic Factors</h3>
+                            <div class="description-table">
+                                <div class="desc-row">
+                                    <span class="desc-column">traveltime</span>
+                                    <span class="desc-meaning">Travel time to school</span>
+                                    <span class="desc-example">1 = <15 min, ..., 4 = >1 hour</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">studytime</span>
+                                    <span class="desc-meaning">Weekly study time</span>
+                                    <span class="desc-example">1 = <2 hrs, ..., 4 = >10 hrs</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">failures</span>
+                                    <span class="desc-meaning">Number of past class failures</span>
+                                    <span class="desc-example">0–3, 4 = 4 or more</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">schoolsup</span>
+                                    <span class="desc-meaning">Extra educational support</span>
+                                    
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">famsup</span>
+                                    <span class="desc-meaning">Family educational support</span>
+                                    
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">paid</span>
+                                    <span class="desc-meaning">Extra paid classes</span>
+                                    
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">activities</span>
+                                    <span class="desc-meaning">Extra-curricular activities</span>
+                                    
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">nursery</span>
+                                    <span class="desc-meaning">Attended nursery school</span>
+                                    
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">higher</span>
+                                    <span class="desc-meaning">Wants to take higher education</span>
+                                    
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">internet</span>
+                                    <span class="desc-meaning">Internet access at home</span>
+                                    
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">romantic</span>
+                                    <span class="desc-meaning">In a romantic relationship</span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="description-slide" data-slide="4">
+                            <h3>Lifestyle & Social Factors</h3>
+                            <div class="description-table">
+                                <div class="desc-row">
+                                    <span class="desc-column">famrel</span>
+                                    <span class="desc-meaning">Family relationship quality</span>
+                                    <span class="desc-example">1 = very bad to 5 = excellent</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">freetime</span>
+                                    <span class="desc-meaning">Free time after school</span>
+                                    <span class="desc-example">1 = rarely, 5 = very frequently</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">goout</span>
+                                    <span class="desc-meaning">Going out with friends</span>
+                                    <span class="desc-example">1 = rarely, 5 = very frequently</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">Dalc</span>
+                                    <span class="desc-meaning">Workday alcohol consumption</span>
+                                    <span class="desc-example">1 = very low to 5 = very high</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">Walc</span>
+                                    <span class="desc-meaning">Weekend alcohol consumption</span>
+                                    <span class="desc-example">1 = very low to 5 = very high</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">health</span>
+                                    <span class="desc-meaning">Current health status</span>
+                                    <span class="desc-example">1 = very bad to 5 = very good</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">absences</span>
+                                    <span class="desc-meaning">Number of school absences</span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="description-slide" data-slide="5">
+                            <h3>Academic Performance</h3>
+                            <div class="description-table">
+                                <div class="desc-row">
+                                    <span class="desc-column">G1</span>
+                                    <span class="desc-meaning">Gross Grade 1</span>
+                                    <span class="desc-example">0–20</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">G2</span>
+                                    <span class="desc-meaning">Gross Grade 2</span>
+                                    <span class="desc-example">0–20</span>
+                                </div>
+                                <div class="desc-row">
+                                    <span class="desc-column">G3</span>
+                                    <span class="desc-meaning">Gross Grade 3</span>
+                                    <span class="desc-example">0–20</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation dots -->
+                    <div class="slide-dots">
+                        <span class="dot active" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                        <span class="dot" data-slide="4"></span>
+                        <span class="dot" data-slide="5"></span>
+                    </div>
+                </div>
+
+                <!-- Data Table -->
+                <div class="table-container">
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    {% for column in columns %}
+                                    <th>{{ column }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in data %}
+                                <tr>
+                                    {% for value in row %}
+                                    <td>{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-section">
+                    <div class="pagination-controls">
+                        {% if current_page > 1 %}
+                        <a href="{{ url_for('archive', page=current_page-1) }}" class="pagination-btn">← Previous</a>
+                        {% endif %}
+                        
+                        <div class="page-numbers">
+                            {% for page_num in range(max(1, current_page-2), min(total_pages+1, current_page+3)) %}
+                            <a href="{{ url_for('archive', page=page_num) }}" 
+                               class="page-number {% if page_num == current_page %}active{% endif %}">
+                                {{ page_num }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                        
+                        {% if current_page < total_pages %}
+                        <a href="{{ url_for('archive', page=current_page+1) }}" class="pagination-btn">Next →</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Button -->
+    <button class="download-button" id="downloadBtn" onclick="downloadCSV()" title="Download CSV">
+        📥
+    </button>
+
+    <!-- AI Button -->
+    <button class="ai-button" id="aiBtn">💬</button>
+
+    <!-- Chat Box -->
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">AI Assistant</div>
+        <div class="chat-messages" id="messages">
+            <p>👋 Hello! How can I help you with the archive data?</p>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type a message...">
+            <button id="sendBtn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Slide functionality
+        const slides = document.querySelectorAll('.description-slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 1;
+
+        function showSlide(slideNumber) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            document.querySelector(`[data-slide="${slideNumber}"]`).classList.add('active');
+            document.querySelector(`.dot[data-slide="${slideNumber}"]`).classList.add('active');
+            currentSlide = slideNumber;
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const slideNumber = parseInt(dot.getAttribute('data-slide'));
+                showSlide(slideNumber);
+            });
+        });
+
+        // Touch/swipe functionality
+        let startX = 0;
+        let endX = 0;
+        const descriptionsContainer = document.querySelector('.descriptions-container');
+
+        descriptionsContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        descriptionsContainer.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = startX - endX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0 && currentSlide < 5) {
+                    // Swipe left - next slide
+                    showSlide(currentSlide + 1);
+                } else if (diff < 0 && currentSlide > 1) {
+                    // Swipe right - previous slide
+                    showSlide(currentSlide - 1);
+                }
+            }
+        }
+
+        // Download CSV function
+        function downloadCSV() {
+            const link = document.createElement('a');
+            link.href = "{{ url_for('download_csv') }}";
+            link.download = 'student_data.csv';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Chat functionality
+        const aiBtn = document.getElementById("aiBtn");
+        const chatBox = document.getElementById("chatBox");
+        const sendBtn = document.getElementById("sendBtn");
+        const messages = document.getElementById("messages");
+        const userInput = document.getElementById("userInput");
+
+        // Toggle chat box visibility
+        aiBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            chatBox.style.display = chatBox.style.display === "flex" ? "none" : "flex";
+        });
+
+        // Close chat box when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!aiBtn.contains(e.target) && !chatBox.contains(e.target)) {
+                chatBox.style.display = "none";
+            }
+        });
+
+        // Prevent chat box from closing when clicking inside it
+        chatBox.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+
+        // Send message
+        sendBtn.addEventListener("click", async () => {
+            const text = userInput.value.trim();
+            if (text) {
+                const userMessage = document.createElement("div");
+                userMessage.className = "chat-message user";
+                userMessage.textContent = text;
+                messages.appendChild(userMessage);
+                
+                userInput.value = "";
+                sendBtn.disabled = true;
+                sendBtn.textContent = "Sending...";
+
+                // Show typing indicator
+                const typingIndicator = document.createElement("div");
+                typingIndicator.className = "chat-message ai typing";
+                typingIndicator.innerHTML = "🤖 EduImpactBot is typing...";
+                messages.appendChild(typingIndicator);
+                messages.scrollTop = messages.scrollHeight;
+
+                try {
+                    const response = await fetch('/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: text })
+                    });
+
+                    const data = await response.json();
+                    
+                    messages.removeChild(typingIndicator);
+
+                    const aiMessage = document.createElement("div");
+                    aiMessage.className = "chat-message ai";
+                    
+                    if (data.error) {
+                        aiMessage.textContent = "Sorry, I encountered an error. Please try again.";
+                        aiMessage.style.color = "#ff6b6b";
+                    } else {
+                        // Convert markdown to HTML for better formatting
+                        let formattedResponse = data.response
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                            .replace(/\n/g, '<br>')
+                            .replace(/^\s*[-*]\s+/gm, '• ')
+                            .replace(/\n\n/g, '<br><br>');
+                        aiMessage.innerHTML = formattedResponse;
+                    }
+                    
+                    messages.appendChild(aiMessage);
+                    messages.scrollTop = messages.scrollHeight;
+                    
+                } catch (error) {
+                    messages.removeChild(typingIndicator);
+                    
+                    const errorMessage = document.createElement("div");
+                    errorMessage.className = "chat-message ai";
+                    errorMessage.textContent = "Sorry, I'm having trouble connecting. Please try again.";
+                    errorMessage.style.color = "#ff6b6b";
+                    messages.appendChild(errorMessage);
+                    messages.scrollTop = messages.scrollHeight;
+                } finally {
+                    sendBtn.disabled = false;
+                    sendBtn.textContent = "Send";
+                }
+            }
+        });
+
+        // Send message on Enter key
+        userInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                sendBtn.click();
+            }
+        });
+
+        // Table row hover effects
+        document.querySelectorAll('.data-table tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = 'rgba(255, 107, 53, 0.1)';
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = '';
+            });
+        });
+    </script>
+</body>
+</html> 

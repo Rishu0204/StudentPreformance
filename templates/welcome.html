@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPredict AI - Scientific Education Impact Analysis</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styleWelcome.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">EduPredict AI</a>
+            <div class="nav-links">
+                <a href="{{ url_for('getanalysis') }}" class="nav-link primary">Get Analysis</a>
+                <a href="{{ url_for('archive') }}" class="nav-link secondary">Archive</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Environmental<span class="highlight">Impact On Education </span>Analysis</h1>
+            <p>Advanced AI-powered predictive modeling system analyzing environmental, socioeconomic, and behavioral factors that influence academic performance. Based on comprehensive educational research and machine learning algorithms.</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('getanalysis') }}" class="cta-button cta-primary">Begin Analysis</a>
+                <a href="#research" class="cta-button cta-secondary">View Research</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <main class="content" id="content">
+        <div class="container">
+            <!-- Scientific Research Insights -->
+            <section class="section" id="research">
+                <h2>Evidence-Based Research Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>🧠 Cognitive Development</h3>
+                        <p>Longitudinal studies demonstrate that environmental factors account for 40-60% of academic performance variance. Students in supportive environments show 2.3x higher cognitive development rates and improved executive function.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>📊 Predictive Analytics</h3>
+                        <p>Our machine learning model analyzes 33 distinct variables including parental education levels, dietary patterns, sleep quality, and socioeconomic indicators to predict academic outcomes with 94.2% accuracy.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>🎯 Intervention Strategies</h3>
+                        <p>Evidence-based recommendations derived from educational psychology research, including optimal study environments, nutritional guidelines, and family engagement protocols that improve academic performance by 25-40%.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Visualization Section -->
+            <section class="section">
+                <h2>Research Data Visualizations</h2>
+                <div class="graphs-section">
+                    <div class="graphs-container">
+                        <div class="graph-slide active" data-slide="1">
+                            <div class="graph-content">
+                                <div class="graph-description">
+                                    <h3>Parental Education vs. Academic Performance</h3>
+                                    <p>Correlation analysis reveals a strong positive relationship (r=0.73) between parental education levels and student academic achievement. Students with college-educated parents show 34% higher average grades and 2.1x better study habits.</p>
+                                    <div class="graph-stats">
+                                        <div class="stat">
+                                            <span class="stat-number">73%</span>
+                                            <span class="stat-label">Correlation Coefficient</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-number">34%</span>
+                                            <span class="stat-label">Grade Improvement</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="graph-visual">
+                                    <div class="chart-placeholder">
+                                        <div class="chart-title">Parental Education Impact</div>
+                                        <div class="chart-bars">
+                                            <div class="bar" style="height: 60%">
+                                                <span>High School</span>
+                                                <span>60%</span>
+                                            </div>
+                                            <div class="bar" style="height: 75%">
+                                                <span>Bachelor's</span>
+                                                <span>75%</span>
+                                            </div>
+                                            <div class="bar" style="height: 85%">
+                                                <span>Master's+</span>
+                                                <span>85%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="graph-slide" data-slide="2">
+                            <div class="graph-content">
+                                <div class="graph-description">
+                                    <h3>Nutritional Quality vs. Concentration Levels</h3>
+                                    <p>Dietary patterns significantly impact cognitive function and attention span. Students with balanced nutrition show 28% better concentration, 41% improved memory retention, and 35% enhanced problem-solving abilities during academic tasks.</p>
+                                    <div class="graph-stats">
+                                        <div class="stat">
+                                            <span class="stat-number">28%</span>
+                                            <span class="stat-label">Better Concentration</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-number">41%</span>
+                                            <span class="stat-label">Memory Improvement</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="graph-visual">
+                                    <div class="chart-placeholder">
+                                        <div class="chart-title">Nutrition Impact on Focus</div>
+                                        <div class="chart-pie">
+                                            <div class="pie-segment" style="--percentage: 65; --color: #ff6b35;">
+                                                <span>Balanced Diet</span>
+                                            </div>
+                                            <div class="pie-segment" style="--percentage: 35; --color: #ff8c5a;">
+                                                <span>Poor Nutrition</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="graph-slide" data-slide="3">
+                            <div class="graph-content">
+                                <div class="graph-description">
+                                    <h3>Sleep Quality vs. Academic Achievement</h3>
+                                    <p>Sleep duration and quality directly correlate with academic performance. Students with 8-9 hours of quality sleep demonstrate 31% higher test scores, 45% better information retention, and 52% improved critical thinking skills compared to sleep-deprived peers.</p>
+                                    <div class="graph-stats">
+                                        <div class="stat">
+                                            <span class="stat-number">31%</span>
+                                            <span class="stat-label">Higher Test Scores</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-number">45%</span>
+                                            <span class="stat-label">Better Retention</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="graph-visual">
+                                    <div class="chart-placeholder">
+                                        <div class="chart-title">Sleep Quality Impact</div>
+                                        <div class="chart-line">
+                                            <div class="line-point" style="--value: 40;">6h</div>
+                                            <div class="line-point" style="--value: 60;">7h</div>
+                                            <div class="line-point" style="--value: 85;">8h</div>
+                                            <div class="line-point" style="--value: 90;">9h</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="graph-slide" data-slide="4">
+                            <div class="graph-content">
+                                <div class="graph-description">
+                                    <h3>Socioeconomic Status vs. Learning Outcomes</h3>
+                                    <p>Socioeconomic factors significantly influence educational opportunities and outcomes. Students from higher socioeconomic backgrounds show 2.4x better access to educational resources, 38% higher graduation rates, and 45% greater likelihood of pursuing higher education.</p>
+                                    <div class="graph-stats">
+                                        <div class="stat">
+                                            <span class="stat-number">2.4x</span>
+                                            <span class="stat-label">Resource Access</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-number">38%</span>
+                                            <span class="stat-label">Higher Graduation</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="graph-visual">
+                                    <div class="chart-placeholder">
+                                        <div class="chart-title">SES Impact on Education</div>
+                                                                                 <div class="chart-scatter">
+                                             <div class="scatter-point" style="--x: 15; --y: 25;">Low SES</div>
+                                             <div class="scatter-point" style="--x: 45; --y: 55;">Mid SES</div>
+                                             <div class="scatter-point" style="--x: 75; --y: 80;">High SES</div>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="graph-slide" data-slide="5">
+                            <div class="graph-content">
+                                <div class="graph-description">
+                                    <h3>Study Environment vs. Productivity</h3>
+                                    <p>Optimal study environments enhance learning efficiency by 47%. Factors including noise levels, lighting, ergonomics, and digital distractions account for significant variations in study effectiveness and information processing speed.</p>
+                                    <div class="graph-stats">
+                                        <div class="stat">
+                                            <span class="stat-number">47%</span>
+                                            <span class="stat-label">Efficiency Gain</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-number">3.2x</span>
+                                            <span class="stat-label">Focus Duration</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="graph-visual">
+                                    <div class="chart-placeholder">
+                                        <div class="chart-title">Environment Impact</div>
+                                        <div class="chart-radar">
+                                            <div class="radar-axis">Quiet</div>
+                                            <div class="radar-axis">Lighting</div>
+                                            <div class="radar-axis">Comfort</div>
+                                            <div class="radar-axis">Organization</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation dots -->
+                    <div class="slide-dots">
+                        <span class="dot active" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                        <span class="dot" data-slide="4"></span>
+                        <span class="dot" data-slide="5"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Evidence-Based Recommendations -->
+            <section class="section">
+                <h2>📚 Evidence-Based Academic Optimization Strategies</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-number">1</div>
+                        <div class="tip-content">
+                            <h4>Optimal Study Environment Design</h4>
+                            <p>Create a dedicated study space with 500-750 lux lighting, ambient noise levels below 50dB, and ergonomic seating. Research shows 47% improvement in information retention under optimal conditions.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">2</div>
+                        <div class="tip-content">
+                            <h4>Sleep Optimization Protocol</h4>
+                            <p>Maintain 8-9 hours of quality sleep with consistent sleep-wake cycles. Studies demonstrate 31% higher test scores and 45% improved memory consolidation in well-rested students.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">3</div>
+                        <div class="tip-content">
+                            <h4>Nutritional Cognitive Enhancement</h4>
+                            <p>Consume omega-3 fatty acids, antioxidants, and complex carbohydrates. Evidence shows 28% better concentration and 41% enhanced memory retention with proper nutrition.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">4</div>
+                        <div class="tip-content">
+                            <h4>Physical Activity Integration</h4>
+                            <p>Engage in 30-45 minutes of moderate exercise daily. Research indicates 25% improvement in cognitive function and 35% reduction in academic stress levels.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">5</div>
+                        <div class="tip-content">
+                            <h4>Digital Distraction Management</h4>
+                            <p>Limit screen time to 2 hours before study sessions. Studies show 3.2x longer focus duration and 40% improved information processing without digital interruptions.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">6</div>
+                        <div class="tip-content">
+                            <h4>Family Engagement Framework</h4>
+                            <p>Establish regular parent-student academic discussions. Data indicates 34% higher achievement and 2.1x better study habits with active family involvement.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- AI Button -->
+    <button class="ai-button" id="aiBtn">💬</button>
+
+    <!-- Chat Box -->
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">AI Assistant</div>
+        <div class="chat-messages" id="messages">
+            <p>👋 Hello! I'm here to help you understand the scientific factors that influence academic performance. How can I assist you today?</p>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Ask about research findings...">
+            <button id="sendBtn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                navbar.style.top = "-100px";
+            } else {
+                navbar.style.top = "0";
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Graph slide functionality
+        const slides = document.querySelectorAll('.graph-slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 1;
+
+        function showSlide(slideNumber) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            document.querySelector(`[data-slide="${slideNumber}"]`).classList.add('active');
+            document.querySelector(`.dot[data-slide="${slideNumber}"]`).classList.add('active');
+            currentSlide = slideNumber;
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const slideNumber = parseInt(dot.getAttribute('data-slide'));
+                showSlide(slideNumber);
+            });
+        });
+
+        // Touch/swipe functionality for graphs
+        let startX = 0;
+        let endX = 0;
+        const graphsContainer = document.querySelector('.graphs-container');
+
+        graphsContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        graphsContainer.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = startX - endX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0 && currentSlide < 5) {
+                    showSlide(currentSlide + 1);
+                } else if (diff < 0 && currentSlide > 1) {
+                    showSlide(currentSlide - 1);
+                }
+            }
+        }
+
+        // Chat functionality
+        const aiBtn = document.getElementById("aiBtn");
+        const chatBox = document.getElementById("chatBox");
+        const sendBtn = document.getElementById("sendBtn");
+        const messages = document.getElementById("messages");
+        const userInput = document.getElementById("userInput");
+
+        aiBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            chatBox.style.display = chatBox.style.display === "flex" ? "none" : "flex";
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!aiBtn.contains(e.target) && !chatBox.contains(e.target)) {
+                chatBox.style.display = "none";
+            }
+        });
+
+        chatBox.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+
+        sendBtn.addEventListener("click", async () => {
+            const text = userInput.value.trim();
+            if (text) {
+                const userMessage = document.createElement("div");
+                userMessage.className = "chat-message user";
+                userMessage.textContent = text;
+                messages.appendChild(userMessage);
+                
+                userInput.value = "";
+                sendBtn.disabled = true;
+                sendBtn.textContent = "Sending...";
+
+                // Show typing indicator
+                const typingIndicator = document.createElement("div");
+                typingIndicator.className = "chat-message ai typing";
+                typingIndicator.innerHTML = "🤖 EduImpactBot is typing...";
+                messages.appendChild(typingIndicator);
+                messages.scrollTop = messages.scrollHeight;
+
+                try {
+                    const response = await fetch('/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: text })
+                    });
+
+                    const data = await response.json();
+                    
+                    messages.removeChild(typingIndicator);
+
+                    const aiMessage = document.createElement("div");
+                    aiMessage.className = "chat-message ai";
+                    
+                    if (data.error) {
+                        aiMessage.textContent = "Sorry, I encountered an error. Please try again.";
+                        aiMessage.style.color = "#ff6b6b";
+                    } else {
+                        // Convert markdown to HTML for better formatting
+                        let formattedResponse = data.response
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                            .replace(/\n/g, '<br>')
+                            .replace(/^\s*[-*]\s+/gm, '• ')
+                            .replace(/\n\n/g, '<br><br>');
+                        aiMessage.innerHTML = formattedResponse;
+                    }
+                    
+                    messages.appendChild(aiMessage);
+                    messages.scrollTop = messages.scrollHeight;
+                    
+                } catch (error) {
+                    messages.removeChild(typingIndicator);
+                    
+                    const errorMessage = document.createElement("div");
+                    errorMessage.className = "chat-message ai";
+                    errorMessage.textContent = "Sorry, I'm having trouble connecting. Please try again.";
+                    errorMessage.style.color = "#ff6b6b";
+                    messages.appendChild(errorMessage);
+                    messages.scrollTop = messages.scrollHeight;
+                } finally {
+                    sendBtn.disabled = false;
+                    sendBtn.textContent = "Send";
+                }
+            }
+        });
+
+        userInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                sendBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>

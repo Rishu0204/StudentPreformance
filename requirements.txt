@@ -1,0 +1,37 @@
+# Core Web Framework
+Flask==3.1.1
+Werkzeug==3.1.3
+
+# Template Engine
+Jinja2==3.1.6
+MarkupSafe==3.0.2
+
+# CLI and Utilities
+click==8.2.1
+blinker==1.9.0
+itsdangerous==2.2.0
+
+# Data Processing and Analysis
+numpy==2.3.2
+pandas==2.3.1
+
+# Machine Learning
+scikit-learn==1.7.1
+
+# AI Integration
+groq==0.4.2
+
+# Date and Time Utilities
+python-dateutil==2.9.0.post0
+pytz==2025.2
+
+# Additional Dependencies
+six==1.17.0
+threadpoolctl==3.6.0
+tzdata==2025.2
+
+# Development and Testing (Optional)
+# pytest==7.4.0
+# pytest-flask==1.2.0
+# black==23.3.0
+# flake8==6.0.0 

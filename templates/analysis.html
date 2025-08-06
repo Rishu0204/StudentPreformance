@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPredict AI - Student Performance Analysis</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styleAnalysis.css') }}">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">EduPredict AI</a>
+            <div class="nav-links">
+                <a href="{{ url_for('getanalysis') }}" class="nav-link">Get Analysis</a>
+                <a href="{{ url_for('archive') }}" class="nav-link">Archive</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="header-section">
+            <h1 class="main-title">Student Performance Analysis</h1>
+            <p class="main-subtitle">Enter student information below to get an AI-powered prediction of academic performance potential</p>
+        </div>
+
+        <div class="form-container">
+            <div class="form-card">
+                <form id="predictionForm">
+                    <!-- Personal Information Section -->
+                    <div class="form-section">
+                        <h3 class="section-title">Personal Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Sex</label>
+                                <select name="sex" class="form-select" required>
+                                    <option value="">Select gender</option>
+                                    <option value="0">Female</option>
+                                    <option value="1">Male</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Age</label>
+                                <input type="number" name="age" min="10" max="25" class="form-input" placeholder="Enter age" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Address</label>
+                                <select name="address" class="form-select" required>
+                                    <option value="">Select location</option>
+                                    <option value="0">R (Rural)</option>
+                                    <option value="1">U (Urban)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Family Information Section -->
+                    <div class="form-section">
+                        <h3 class="section-title">Family Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Family Size</label>
+                                <select name="famsize" class="form-select" required>
+                                    <option value="">Select size</option>
+                                    <option value="0">GT3</option>
+                                    <option value="1">LE3</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Parent Status</label>
+                                <select name="Pstatus" class="form-select" required>
+                                    <option value="">Select status</option>
+                                    <option value="0">A (Apart)</option>
+                                    <option value="1">T (Together)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Guardian</label>
+                                <select name="guardian" class="form-select" required>
+                                    <option value="">Select guardian</option>
+                                    <option value="0">Father</option>
+                                    <option value="1">Mother</option>
+                                    <option value="2">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Mother Education (0-4)</label>
+                                <input type="number" name="Medu" min="0" max="4" class="form-input" placeholder="0-4 scale" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Father Education (0-4)</label>
+                                <input type="number" name="Fedu" min="0" max="4" class="form-input" placeholder="0-4 scale" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Mother's Job</label>
+                                <select name="Mjob" class="form-select" required>
+                                    <option value="">Select job</option>
+                                    <option value="0">At home</option>
+                                    <option value="1">Health</option>
+                                    <option value="2">Other</option>
+                                    <option value="3">Services</option>
+                                    <option value="4">Teacher</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Father's Job</label>
+                                <select name="Fjob" class="form-select" required>
+                                    <option value="">Select job</option>
+                                    <option value="0">At home</option>
+                                    <option value="1">Health</option>
+                                    <option value="2">Other</option>
+                                    <option value="3">Services</option>
+                                    <option value="4">Teacher</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Information Section -->
+                    <div class="form-section">
+                        <h3 class="section-title">Academic Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Reason for school choice</label>
+                                <select name="reason" class="form-select" required>
+                                    <option value="">Select reason</option>
+                                    <option value="0">Course</option>
+                                    <option value="1">Home</option>
+                                    <option value="2">Other</option>
+                                    <option value="3">Reputation</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Travel Time (1-4)</label>
+                                <input type="number" name="traveltime" min="1" max="4" class="form-input" placeholder="1-4 scale" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Study Time (1-4)</label>
+                                <input type="number" name="studytime" min="1" max="4" class="form-input" placeholder="1-4 scale" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Failures (0-3)</label>
+                                <input type="number" name="failures" min="0" max="3" class="form-input" placeholder="0-3 count" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Absences</label>
+                                <input type="number" name="absences" min="0" class="form-input" placeholder="Number of absences" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Support & Activities Section -->
+                    <div class="form-section">
+                        <h3 class="section-title">Support & Activities</h3>
+                        <div class="form-grid-4">
+                            <div class="form-group">
+                                <label class="form-label">School Support</label>
+                                <select name="schoolsup" class="form-select" required>
+                                    <option value="">Select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Family Support</label>
+                                <select name="famsup" class="form-select" required>
+                                    <option value="">Select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Extra Paid Classes</label>
+                                <select name="paid" class="form-select" required>
+                                    <option value="">Select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Activities</label>
+                                <select name="activities" class="form-select" required>
+                                    <option value="">Select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Nursery Attended</label>
+                                <select name="nursery" class="form-select" required>
+                                    <option value="">Select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Wants Higher Education</label>
+                                <select name="higher" class="form-select" required>
+                                    <option value="">Select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Internet Access</label>
+                                <select name="internet" class="form-select" required>
+                                    <option value="">Select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Romantic Relationship</label>
+                                <select name="romantic" class="form-select" required>
+                                    <option value="">Select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lifestyle Factors Section -->
+                    <div class="form-section">
+                        <h3 class="section-title">Lifestyle Factors</h3>
+                        <div class="form-grid-4">
+                            <div class="form-group">
+                                <label class="form-label">Family Relationship Quality (1-5)</label>
+                                <input type="number" name="famrel" min="1" max="5" class="form-input" placeholder="1-5 scale" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Free Time (1-5)</label>
+                                <input type="number" name="freetime" min="1" max="5" class="form-input" placeholder="1-5 scale" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Going Out Frequency (1-5)</label>
+                                <input type="number" name="goout" min="1" max="5" class="form-input" placeholder="1-5 scale" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Health (1-5)</label>
+                                <input type="number" name="health" min="1" max="5" class="form-input" placeholder="1-5 scale" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-button">Predict Performance</button>
+                </form>
+            </div>
+
+            <!-- Result Container -->
+            <div id="resultContainer" class="result-container" style="{% if result %}display: block;{% else %}display: none;{% endif %}">
+                <div id="resultText" class="result-text">{{ result if result else '' }}</div>
+                <div id="aiAnalysis" class="ai-analysis">
+                    {% if ai_analysis %}
+                        <h3>🤖 AI-Powered Analysis</h3>
+                        <div class="ai-content" id="aiContent">{{ ai_analysis }}</div>
+                    {% endif %}
+                </div>
+                <p id="resultDescription" class="result-description"></p>
+            </div>
+        </div>
+    </div>
+    <button class="ai-button" id="aiBtn">💬</button>
+
+    <!-- Chat Box -->
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">AI Assistant</div>
+        <div class="chat-messages" id="messages">
+            <p>👋 Hello! How can I help you today?</p>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type a message...">
+            <button id="sendBtn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Format AI analysis content when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const aiContent = document.getElementById('aiContent');
+            if (aiContent) {
+                let formattedContent = aiContent.innerHTML
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/\n/g, '<br>')
+                    .replace(/^\s*[-*]\s+/gm, '• ')
+                    .replace(/\n\n/g, '<br><br>');
+                aiContent.innerHTML = formattedContent;
+            }
+        });
+
+        // Form submission handling
+        document.getElementById('predictionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const submitButton = form.querySelector('.submit-button');
+            const resultContainer = document.getElementById('resultContainer');
+            const resultText = document.getElementById('resultText');
+            const aiAnalysis = document.getElementById('aiAnalysis');
+            const aiContent = document.getElementById('aiContent');
+            
+            // Show loading state
+            submitButton.textContent = 'Analyzing...';
+            submitButton.disabled = true;
+            form.classList.add('loading');
+            
+            // Hide previous results
+            resultContainer.style.display = 'none';
+            
+            // Collect form data
+            const formData = new FormData(form);
+            
+            // Send to server for AI analysis
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(html => {
+                // Create a temporary div to parse the HTML response
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                
+                // Extract the result and AI analysis from the response
+                const newResultText = tempDiv.querySelector('#resultText');
+                const newAiAnalysis = tempDiv.querySelector('#aiAnalysis');
+                
+                if (newResultText) {
+                    resultText.innerHTML = newResultText.innerHTML;
+                    resultText.className = newResultText.className;
+                }
+                
+                if (newAiAnalysis) {
+                    aiAnalysis.innerHTML = newAiAnalysis.innerHTML;
+                    
+                    // Format the AI content with markdown
+                    const aiContent = document.getElementById('aiContent');
+                    if (aiContent) {
+                        let formattedContent = aiContent.innerHTML
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                            .replace(/\n/g, '<br>')
+                            .replace(/^\s*[-*]\s+/gm, '• ')
+                            .replace(/\n\n/g, '<br><br>');
+                        aiContent.innerHTML = formattedContent;
+                    }
+                }
+                
+                // Show results
+                resultContainer.style.display = 'block';
+                
+                // Reset button
+                submitButton.textContent = 'Predict Performance';
+                submitButton.disabled = false;
+                form.classList.remove('loading');
+                
+                // Scroll to result
+                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                resultText.textContent = 'Error occurred during analysis. Please try again.';
+                resultContainer.style.display = 'block';
+                
+                // Reset button
+                submitButton.textContent = 'Predict Performance';
+                submitButton.disabled = false;
+                form.classList.remove('loading');
+            });
+        });
+
+        // Navbar scroll effect
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scroll Down - Hide navbar
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // Scroll Up - Show navbar
+                navbar.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Enhanced form interactions
+        document.querySelectorAll('.form-input, .form-select').forEach(element => {
+            element.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+                this.parentElement.style.transition = 'transform 0.2s ease';
+            });
+            
+            element.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Input validation feedback
+        document.querySelectorAll('input[required], select[required]').forEach(element => {
+            element.addEventListener('invalid', function() {
+                this.style.borderColor = '#f56565';
+                this.style.boxShadow = '0 0 0 3px rgba(245, 101, 101, 0.2)';
+            });
+            
+            element.addEventListener('input', function() {
+                if (this.validity.valid) {
+                    this.style.borderColor = 'rgba(255, 107, 53, 0.2)';
+                    this.style.boxShadow = '';
+                }
+            });
+        });
+
+        const aiBtn = document.getElementById("aiBtn");
+        const chatBox = document.getElementById("chatBox");
+        const sendBtn = document.getElementById("sendBtn");
+        const messages = document.getElementById("messages");
+        const userInput = document.getElementById("userInput");
+
+        // Toggle chat box visibility
+        aiBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent event from bubbling up
+            chatBox.style.display = chatBox.style.display === "flex" ? "none" : "flex";
+        });
+
+        // Close chat box when clicking outside
+        document.addEventListener("click", (e) => {
+            // Check if click is outside both the AI button and chat box
+            if (!aiBtn.contains(e.target) && !chatBox.contains(e.target)) {
+                chatBox.style.display = "none";
+            }
+        });
+
+        // Prevent chat box from closing when clicking inside it
+        chatBox.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+
+        // Send message
+        sendBtn.addEventListener("click", async () => {
+            const text = userInput.value.trim();
+            if (text) {
+                // Create user message with proper styling
+                const userMessage = document.createElement("div");
+                userMessage.className = "chat-message user";
+                userMessage.textContent = text;
+                messages.appendChild(userMessage);
+                
+                userInput.value = "";
+                sendBtn.disabled = true;
+                sendBtn.textContent = "Sending...";
+
+                // Show typing indicator
+                const typingIndicator = document.createElement("div");
+                typingIndicator.className = "chat-message ai typing";
+                typingIndicator.innerHTML = "🤖 EduImpactBot is typing...";
+                messages.appendChild(typingIndicator);
+                messages.scrollTop = messages.scrollHeight;
+
+                try {
+                    // Send to actual AI API
+                    const response = await fetch('/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: text })
+                    });
+
+                    const data = await response.json();
+                    
+                    // Remove typing indicator
+                    messages.removeChild(typingIndicator);
+
+                    // Create AI response message
+                    const aiMessage = document.createElement("div");
+                    aiMessage.className = "chat-message ai";
+                    
+                    if (data.error) {
+                        aiMessage.textContent = "Sorry, I encountered an error. Please try again.";
+                        aiMessage.style.color = "#ff6b6b";
+                    } else {
+                        // Convert markdown to HTML for better formatting
+                        let formattedResponse = data.response
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                            .replace(/\n/g, '<br>')
+                            .replace(/^\s*[-*]\s+/gm, '• ')
+                            .replace(/\n\n/g, '<br><br>');
+                        aiMessage.innerHTML = formattedResponse;
+                    }
+                    
+                    messages.appendChild(aiMessage);
+                    messages.scrollTop = messages.scrollHeight;
+                    
+                } catch (error) {
+                    // Remove typing indicator
+                    messages.removeChild(typingIndicator);
+                    
+                    const errorMessage = document.createElement("div");
+                    errorMessage.className = "chat-message ai";
+                    errorMessage.textContent = "Sorry, I'm having trouble connecting. Please try again.";
+                    errorMessage.style.color = "#ff6b6b";
+                    messages.appendChild(errorMessage);
+                    messages.scrollTop = messages.scrollHeight;
+                } finally {
+                    sendBtn.disabled = false;
+                    sendBtn.textContent = "Send";
+                }
+            }
+        });
+
+        // Send message on Enter key
+        userInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                sendBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>
