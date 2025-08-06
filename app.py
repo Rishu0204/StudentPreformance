@@ -292,7 +292,7 @@ def predict():
                     {"role": "system", "content": "You are an educational consultant specializing in student performance analysis. Provide personalized, actionable advice based on environmental factors."},
                     {"role": "user", "content": ai_prompt}
                 ],
-                max_tokens=600,
+                max_tokens=400,
                 temperature=0.7
             )
 
