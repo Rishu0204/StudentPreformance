@@ -7,10 +7,75 @@ import os
 from math import ceil
 from groq import Groq
 from config import GROQ_API_KEY
+import re
+from markupsafe import Markup
 with gzip.open('model.pkl', 'rb') as f:
     scale, model = pickle.load(f)
 
 app=Flask(__name__)
+
+def markdown_to_html(text):
+    """Convert basic markdown text to HTML with safe rendering"""
+    if not text:
+        return ""
+    
+    # Split text into paragraphs for better processing
+    paragraphs = text.split('\n\n')
+    processed_paragraphs = []
+    
+    for paragraph in paragraphs:
+        if not paragraph.strip():
+            continue
+            
+        # Convert headers
+        paragraph = re.sub(r'^### (.*?)$', r'<h3>\1</h3>', paragraph, flags=re.MULTILINE)
+        paragraph = re.sub(r'^## (.*?)$', r'<h2>\1</h2>', paragraph, flags=re.MULTILINE)
+        paragraph = re.sub(r'^# (.*?)$', r'<h1>\1</h1>', paragraph, flags=re.MULTILINE)
+        
+        # Convert bold and italic text
+        paragraph = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', paragraph)
+        paragraph = re.sub(r'\*(.*?)\*', r'<em>\1</em>', paragraph)
+        
+        # Check if this paragraph contains list items
+        lines = paragraph.split('\n')
+        list_lines = []
+        non_list_lines = []
+        
+        for line in lines:
+            if re.match(r'^- ', line):
+                list_lines.append(re.sub(r'^- (.*)', r'<li>\1</li>', line))
+            elif re.match(r'^\d+\. ', line):
+                list_lines.append(re.sub(r'^\d+\. (.*)', r'<li>\1</li>', line))
+            else:
+                if list_lines:
+                    # Close the current list
+                    non_list_lines.append(f'<ul>{"".join(list_lines)}</ul>')
+                    list_lines = []
+                non_list_lines.append(line)
+        
+        # Handle any remaining list items
+        if list_lines:
+            non_list_lines.append(f'<ul>{"".join(list_lines)}</ul>')
+        
+        # Rejoin the lines
+        paragraph = '\n'.join(non_list_lines)
+        
+        # Convert single line breaks to <br> but preserve HTML structure
+        if not any(tag in paragraph for tag in ['<h1>', '<h2>', '<h3>', '<ul>', '<ol>']):
+            paragraph = paragraph.replace('\n', '<br>')
+            if paragraph and not paragraph.startswith('<'):
+                paragraph = f'<p>{paragraph}</p>'
+        else:
+            # For paragraphs with headers or lists, just clean up extra newlines
+            paragraph = paragraph.replace('\n', '')
+        
+        processed_paragraphs.append(paragraph)
+    
+    # Join all paragraphs
+    html = ''.join(processed_paragraphs)
+    
+    # Return as safe markup for Jinja2
+    return Markup(html)
 
 # Initialize Groq AI client
 try:
@@ -300,7 +365,16 @@ def predict():
 
         4. **Future Outlook**: Based on the environmental factors, discuss realistic expectations and potential for improvement.
 
-        Format your response in a warm, encouraging tone as if speaking directly to the student and their family. Use clear headings and bullet points for easy reading. Keep the response comprehensive but focused (4-5 paragraphs maximum).
+                 Format your response in a warm, encouraging tone as if speaking directly to the student and their family. 
+
+         **FORMATTING REQUIREMENTS:**
+         - Use markdown formatting for structure
+         - Use ## for main headings (e.g., ## Performance Assessment)
+         - Use ### for subheadings 
+         - Use **bold** for emphasis
+         - Use bullet points (-) for lists
+         - Keep response comprehensive but focused (4-5 sections maximum)
+         - Make it visually appealing and easy to read
         """
 
         # Check if Groq client is available
@@ -355,7 +429,10 @@ Your academic performance prediction has been completed successfully. Once the A
 
 While I cannot provide the detailed AI analysis at this moment, your academic performance prediction has been completed successfully. Please try again later for the personalized AI insights, or contact support if the issue persists."""
 
-    return render_template('analysis.html', result=basic_result, ai_analysis=ai_result, scores=scores)
+    # Convert AI response markdown to HTML for proper display
+    ai_analysis_html = markdown_to_html(ai_result) if ai_result else ""
+    
+    return render_template('analysis.html', result=basic_result, ai_analysis=ai_analysis_html, scores=scores)
 
 
 if __name__ == '__main__':
