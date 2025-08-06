@@ -769,3 +769,10 @@
         .chat-input button:active {
             transform: translateY(0);
         }
+
+        .result-container.hide {
+            display: none;
+        }
+        .result-container.show {
+            display: block;
+        }
