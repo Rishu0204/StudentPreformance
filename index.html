@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Voyage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Initial state with floating heading and sun -->
+    <div id="initial-screen" class="initial-screen">
+        <h1 class="floating-title">SPACE VOYAGE</h1>
+        <div class="sun-container">
+            <div class="sun" id="sun"></div>
+        </div>
+    </div>
+
+    <!-- Main solar system view -->
+    <div id="main-view" class="main-view hidden">
+        <!-- Planet Navigation Bar -->
+        <nav class="planet-navbar" id="planet-navbar">
+            <ul class="planet-list">
+                <li><button class="planet-nav-btn" data-planet="mercury">Mercury</button></li>
+                <li><button class="planet-nav-btn" data-planet="venus">Venus</button></li>
+                <li><button class="planet-nav-btn" data-planet="earth">Earth</button></li>
+                <li><button class="planet-nav-btn" data-planet="mars">Mars</button></li>
+                <li><button class="planet-nav-btn" data-planet="jupiter">Jupiter</button></li>
+                <li><button class="planet-nav-btn" data-planet="saturn">Saturn</button></li>
+                <li><button class="planet-nav-btn" data-planet="uranus">Uranus</button></li>
+                <li><button class="planet-nav-btn" data-planet="neptune">Neptune</button></li>
+            </ul>
+        </nav>
+
+        <!-- Solar System Container -->
+        <div class="solar-system" id="solar-system">
+            <div class="central-sun"></div>
+            
+            <!-- Planets -->
+            <div class="planet mercury" data-planet="mercury">
+                <div class="planet-sphere"></div>
+                <span class="planet-label">MERCURY</span>
+            </div>
+            
+            <div class="planet venus" data-planet="venus">
+                <div class="planet-sphere"></div>
+                <span class="planet-label">VENUS</span>
+            </div>
+            
+            <div class="planet earth" data-planet="earth">
+                <div class="planet-sphere"></div>
+                <div class="moon moon-1"></div>
+                <span class="planet-label">EARTH</span>
+            </div>
+            
+            <div class="planet mars" data-planet="mars">
+                <div class="planet-sphere"></div>
+                <div class="moon moon-1"></div>
+                <div class="moon moon-2"></div>
+                <span class="planet-label">MARS</span>
+            </div>
+            
+            <div class="planet jupiter" data-planet="jupiter">
+                <div class="planet-sphere"></div>
+                <div class="moon moon-1"></div>
+                <div class="moon moon-2"></div>
+                <div class="moon moon-3"></div>
+                <span class="planet-label">JUPITER</span>
+            </div>
+            
+            <div class="planet saturn" data-planet="saturn">
+                <div class="planet-sphere"></div>
+                <div class="saturn-rings"></div>
+                <div class="moon moon-1"></div>
+                <div class="moon moon-2"></div>
+                <div class="moon moon-3"></div>
+                <span class="planet-label">SATURN</span>
+            </div>
+            
+            <div class="planet uranus" data-planet="uranus">
+                <div class="planet-sphere"></div>
+                <div class="moon moon-1"></div>
+                <div class="moon moon-2"></div>
+                <div class="moon moon-3"></div>
+                <span class="planet-label">URANUS</span>
+            </div>
+            
+            <div class="planet neptune" data-planet="neptune">
+                <div class="planet-sphere"></div>
+                <div class="moon moon-1"></div>
+                <div class="moon moon-2"></div>
+                <span class="planet-label">NEPTUNE</span>
+            </div>
+        </div>
+
+        <!-- Planet Detail View -->
+        <div class="planet-detail" id="planet-detail">
+            <div class="planet-detail-visual">
+                <div class="selected-planet" id="selected-planet"></div>
+                <div class="planet-moons" id="planet-moons"></div>
+            </div>
+            <div class="planet-info" id="planet-info">
+                <h2 class="planet-name" id="planet-name"></h2>
+                <div class="planet-stats" id="planet-stats"></div>
+                <div class="planet-description" id="planet-description"></div>
+                <div class="scientific-data" id="scientific-data"></div>
+            </div>
+        </div>
+
+        <!-- Moon Detail View -->
+        <div class="moon-detail" id="moon-detail">
+            <div class="moon-detail-visual">
+                <div class="selected-moon" id="selected-moon"></div>
+            </div>
+            <div class="moon-info" id="moon-info">
+                <h2 class="moon-name" id="moon-name"></h2>
+                <div class="moon-stats" id="moon-stats"></div>
+                <div class="moon-description" id="moon-description"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
